@@ -1,11 +1,21 @@
 import burger from "./assets/hamburger.svg";
-function Greeting() {
+import react from "./assets/react.svg";
+
+export default function Greeting() {
   return (
     <>
-      <h1>I like hamburger!</h1>
-      <img src={burger} style={{ width: 240, height: 240 }} />
+      <div className="intro">
+        <h1>Welcome to my website!</h1>
+      </div>
+      <p className="summary">
+        You can find my thoughts here.
+        <br />
+        <br />
+        <b>
+          And <i>pictures</i>
+        </b>
+        of scientists!
+      </p>
     </>
   );
 }
-
-export default Greeting;
