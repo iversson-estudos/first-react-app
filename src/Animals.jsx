@@ -1,7 +1,7 @@
 function Button({
   text = "Click Me!",
-  color = "blue",
-  fontSize = 12,
+  color = "green",
+  fontSize = 18,
   handleClick,
 }) {
   const buttonStyle = {
