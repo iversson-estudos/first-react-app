@@ -1,31 +1,34 @@
-function Button({
-  text = "Click Me!",
-  color = "green",
-  fontSize = 18,
-  handleClick,
-}) {
-  const buttonStyle = {
-    color: color,
-    fontSize: fontSize + "px",
+import React, { useState } from "react";
+
+const COLORS = ["pink", "green", "blue", "yellow", "purple"];
+
+function App() {
+  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+  const [count,setCount]=useState(0);
+
+  const onButtonClick = (color) => () => {
+    setBackgroundColor(color);
+    setCount(count+1);
   };
 
   return (
-    <button onClick={handleClick} style={buttonStyle}>
-      {text}
-    </button>
-  );
-}
-
-export default function App() {
-  const handleButtonClick = (url) => {
-    window.location.href = url;
-  };
-
-  return (
-    <div>
-      <Button
-        handleClick={() => handleButtonClick("https://www.theodinproject.com")}
-      />
+    <div  className="App"
+    style={{
+      backgroundColor
+    }}>
+      {COLORS.map((color) => (
+        <button
+          type="button"
+          key={color}
+          onClick={onButtonClick(color)}
+          className={backgroundColor === color ? "selected" : ""}
+        >
+          {color}
+        </button>
+      ))}
+      <p>{count}</p>
     </div>
   );
 }
+
+export default App;
