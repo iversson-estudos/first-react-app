@@ -1,34 +1,35 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const COLORS = ["pink", "green", "blue", "yellow", "purple"];
+export default function Person() {
+  const [person, setPerson] = useState({ firstName: "John", lastName:"Doe", age: 100 });
+  const fullName = person.firstName + " " + person.lastName;
 
-function App() {
-  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
-  const [count,setCount]=useState(0);
-
-  const onButtonClick = (color) => () => {
-    setBackgroundColor(color);
-    setCount(count+1);
+  const handleIncreaseAge = () => {
+    setPerson({ ...person, age: person.age + 1 });
   };
+  
+  const handleNameChange=(index,e)=>{
+   const value = e.target.value;
+    if(index===0){
+      setPerson({...person,firstName:value});
+    }
+  else if(index===1){
+    setPerson({...person,lastName:value});
+  }};
+
+
+
+  
 
   return (
-    <div  className="App"
-    style={{
-      backgroundColor
-    }}>
-      {COLORS.map((color) => (
-        <button
-          type="button"
-          key={color}
-          onClick={onButtonClick(color)}
-          className={backgroundColor === color ? "selected" : ""}
-        >
-          {color}
-        </button>
-      ))}
-      <p>{count}</p>
-    </div>
+    <>
+      <label>First Name</label>
+      <input value={person.firstName} onChange={(e)=>{handleNameChange(0,e)}}></input>
+      <label>Last Name</label>
+      <input value={person.lastName}  onChange={(e)=>{handleNameChange(1,e)}}></input>
+      <h1>{fullName}</h1>
+      <h2>{person.age}</h2>
+      <button onClick={handleIncreaseAge}>Increase age</button>
+    </>
   );
 }
-
-export default App;
